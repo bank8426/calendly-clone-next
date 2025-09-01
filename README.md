@@ -38,6 +38,8 @@ TODO
 - TypeScript - JavaScript superset for type safety
 - Tailwind CSS v4 - CSS framework
 - Clerk - Authentication middleware, pre-built UI components for user authentication and themes
+- Neon - PostgresSQL database cloud service
+- Drizzle - ORM for SQL databases
 
 ## <a name="features">Features</a>
 
