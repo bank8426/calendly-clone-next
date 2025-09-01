@@ -40,6 +40,7 @@ TODO
 - Clerk - Authentication middleware, pre-built UI components for user authentication and themes
 - Neon - PostgresSQL database cloud service
 - Drizzle - ORM for SQL databases
+- Shadcn UI - components library that provides pre-built UI components code and let you customize it
 
 ## <a name="features">Features</a>
 
