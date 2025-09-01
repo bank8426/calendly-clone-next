@@ -37,6 +37,7 @@ TODO
 - React - JavaScript library
 - TypeScript - JavaScript superset for type safety
 - Tailwind CSS v4 - CSS framework
+- Clerk - Authentication middleware and pre-built UI components for user authentication
 
 ## <a name="features">Features</a>
 
