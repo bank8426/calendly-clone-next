@@ -24,12 +24,17 @@ TODO
 
 TODO
 
-<!--
-#### Homepage (Rate limit)
+### Sign in
 
 <a href="">
-  <img src="public/readme/home-rate-limit.png" alt="Rate limit" />
-</a> -->
+  <img src="public/readme/sign-in.png" alt="Sign in" />
+</a>
+
+### Sign up
+
+<a href="">
+  <img src="public/readme/sign-up.png" alt="Sign up" />
+</a>
 
 ## <a name="tech-stack">Tech Stack</a>
 
