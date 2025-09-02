@@ -45,7 +45,7 @@ TODO
 - Clerk - Authentication middleware, pre-built UI components for user authentication and themes
 - Neon - PostgresSQL database cloud service
 - Drizzle - ORM for SQL databases
-- Shadcn UI - components library that provides pre-built UI components code and let you customize it. In this project we use it for Button, Card, Form, Input
+- Shadcn UI - components library that provides pre-built UI components code and let you customize it. In this project we use it for Button, Card, Form, Input, Textarea, Switch, AlertDialog
 - Lucide React - Icon library for React
 - tw-animate-css - Collection of utilities classes for Tailwind CSS animations
 - react-hook-form - Custom React hook for form validation, form state management, and form submission
@@ -101,7 +101,20 @@ Your server will run on [http://localhost:3000](http://localhost:3000/)
 ## <a name="learn">What I learned</a>
 
 TODO
+React
+
+- useTransition
+
+Next
+
+- revalidatePath
 
 ## <a name="note">Implementation Notes</a>
 
 TODO
+
+- Next
+
+  - NEXT_REDIRECT error when redirect in try cath
+
+    - In Server Actions and Route Handlers, redirect should be called `outside` the try block when using try/catch statements. https://nextjs.org/docs/app/api-reference/functions/redirect#behavior
