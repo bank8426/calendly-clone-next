@@ -45,7 +45,12 @@ TODO
 - Clerk - Authentication middleware, pre-built UI components for user authentication and themes
 - Neon - PostgresSQL database cloud service
 - Drizzle - ORM for SQL databases
-- Shadcn UI - components library that provides pre-built UI components code and let you customize it
+- Shadcn UI - components library that provides pre-built UI components code and let you customize it. In this project we use it for Button, Card, Form, Input
+- Lucide React - Icon library for React
+- tw-animate-css - Collection of utilities classes for Tailwind CSS animations
+- react-hook-form - Custom React hook for form validation, form state management, and form submission
+- zod - Schema-based validation and data parsing
+- @hookform/resolvers - Form validation resolver when using external validation library like `zod` in this project
 
 ## <a name="features">Features</a>
 
