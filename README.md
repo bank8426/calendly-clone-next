@@ -36,6 +36,13 @@ TODO
   <img src="public/readme/sign-up.png" alt="Sign up" />
 </a>
 
+<!-- Authen user -->
+<!-- Create note Copy Link -->
+
+<!-- Edit note -->
+
+<!-- Not authen user -->
+
 ## <a name="tech-stack">Tech Stack</a>
 
 - Next.js - React framework for full-stack web application development
@@ -45,7 +52,7 @@ TODO
 - Clerk - Authentication middleware, pre-built UI components for user authentication and themes
 - Neon - PostgresSQL database cloud service
 - Drizzle - ORM for SQL databases
-- Shadcn UI - components library that provides pre-built UI components code and let you customize it. In this project we use it for Button, Card, Form, Input, Textarea, Switch, AlertDialog
+- Shadcn UI - components library that provides pre-built UI components code and let you customize it. In this project we use it for Button, Card, Form, Input, Textarea, Switch, AlertDialog, Sonner (Toast but different name)
 - Lucide React - Icon library for React
 - tw-animate-css - Collection of utilities classes for Tailwind CSS animations
 - react-hook-form - Custom React hook for form validation, form state management, and form submission
@@ -101,9 +108,16 @@ Your server will run on [http://localhost:3000](http://localhost:3000/)
 ## <a name="learn">What I learned</a>
 
 TODO
+JS
+
+- navigator.clipboard
+  .writeText(url)
+
 React
 
 - useTransition
+
+- asChild
 
 Next
 
