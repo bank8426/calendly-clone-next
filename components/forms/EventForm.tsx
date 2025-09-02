@@ -182,6 +182,7 @@ const EventForm = ({
                       startDeleteTransition(async () => {
                         try {
                           await deleteEvent(event.id);
+                          router.push("/events");
                         } catch (error: any) {
                           form.setError("root", {
                             message: `There was an error deleting your event: ${error.message}`,

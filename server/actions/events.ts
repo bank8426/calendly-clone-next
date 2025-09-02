@@ -84,10 +84,10 @@ export async function deleteEvent(id: string): Promise<void> {
 
 type EventRow = typeof EventTable.$inferSelect;
 
-export async function getEvents(clerkUserId: string): Promise<EventRow[]> {
+export async function getEvents(userId: string): Promise<EventRow[]> {
   try {
     const events = await db.query.EventTable.findMany({
-      where: ({ clerkUserId: userIdCol }, { eq }) => eq(userIdCol, clerkUserId),
+      where: ({ clerkUserId }, { eq }) => eq(clerkUserId, userId),
       orderBy: ({ name }, { asc, sql }) => asc(sql`lower(${name})`),
     });
 
@@ -97,4 +97,22 @@ export async function getEvents(clerkUserId: string): Promise<EventRow[]> {
   }
 
   return [];
+}
+
+export async function getEvent(
+  userId: string,
+  eventId: string
+): Promise<EventRow | undefined> {
+  try {
+    const event = await db.query.EventTable.findFirst({
+      where: ({ id, clerkUserId }, { and, eq }) =>
+        and(eq(clerkUserId, userId), eq(id, eventId)),
+    });
+
+    return event ?? undefined;
+  } catch (error: any) {
+    throw new Error(`Failed to fetch event: ${error.message || error}`);
+  }
+
+  return undefined;
 }

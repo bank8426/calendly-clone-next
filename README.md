@@ -41,6 +41,8 @@ TODO
 
 <!-- Edit note -->
 
+<!-- Delete note -->
+
 <!-- Not authen user -->
 
 ## <a name="tech-stack">Tech Stack</a>
