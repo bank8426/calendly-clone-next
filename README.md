@@ -38,6 +38,7 @@ TODO
 
 <!-- Authen user -->
 <!-- Create event then Copy Link -->
+<!-- Create inactive event then no one shold see it in public profile -->
 
 <!-- Edit event -->
 
@@ -45,7 +46,11 @@ TODO
 
 <!-- Add availability in schedule then add overlap availability in same day  -->
 
+<!-- Public profile then copy profile url -->
+
 <!-- Not authen user -->
+
+<!-- Public Profile -->
 
 ## <a name="tech-stack">Tech Stack</a>
 

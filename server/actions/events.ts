@@ -85,34 +85,35 @@ export async function deleteEvent(id: string): Promise<void> {
 type EventRow = typeof EventTable.$inferSelect;
 
 export async function getEvents(userId: string): Promise<EventRow[]> {
-  try {
-    const events = await db.query.EventTable.findMany({
-      where: ({ clerkUserId }, { eq }) => eq(clerkUserId, userId),
-      orderBy: ({ name }, { asc, sql }) => asc(sql`lower(${name})`),
-    });
+  const events = await db.query.EventTable.findMany({
+    where: ({ clerkUserId }, { eq }) => eq(clerkUserId, userId),
+    orderBy: ({ name }, { asc, sql }) => asc(sql`lower(${name})`),
+  });
 
-    return events;
-  } catch (error: any) {
-    throw new Error(`Failed to fetch events: ${error.message || error}`);
-  }
-
-  return [];
+  return events;
 }
 
 export async function getEvent(
   userId: string,
   eventId: string
 ): Promise<EventRow | undefined> {
-  try {
-    const event = await db.query.EventTable.findFirst({
-      where: ({ id, clerkUserId }, { and, eq }) =>
-        and(eq(clerkUserId, userId), eq(id, eventId)),
-    });
+  const event = await db.query.EventTable.findFirst({
+    where: ({ id, clerkUserId }, { and, eq }) =>
+      and(eq(clerkUserId, userId), eq(id, eventId)),
+  });
+  return event ?? undefined;
+}
 
-    return event ?? undefined;
-  } catch (error: any) {
-    throw new Error(`Failed to fetch event: ${error.message || error}`);
-  }
+export type PublicEvent = Omit<EventRow, "isActive"> & { isActive: true };
 
-  return undefined;
+export async function getPublicEvents(
+  clerkUserId: string
+): Promise<PublicEvent[]> {
+  const events = await db.query.EventTable.findMany({
+    where: ({ clerkUserId: userIdCol, isActive }, { eq, and }) =>
+      and(eq(userIdCol, clerkUserId), eq(isActive, true)),
+    orderBy: ({ name }, { asc, sql }) => asc(sql`lower(${name})`),
+  });
+
+  return events as PublicEvent[];
 }
