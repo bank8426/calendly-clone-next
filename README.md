@@ -37,11 +37,13 @@ TODO
 </a>
 
 <!-- Authen user -->
-<!-- Create note Copy Link -->
+<!-- Create event then Copy Link -->
 
-<!-- Edit note -->
+<!-- Edit event -->
 
-<!-- Delete note -->
+<!-- Delete event -->
+
+<!-- Add availability in schedule then add overlap availability in same day  -->
 
 <!-- Not authen user -->
 
@@ -54,7 +56,7 @@ TODO
 - Clerk - Authentication middleware, pre-built UI components for user authentication and themes
 - Neon - PostgresSQL database cloud service
 - Drizzle - ORM for SQL databases
-- Shadcn UI - components library that provides pre-built UI components code and let you customize it. In this project we use it for Button, Card, Form, Input, Textarea, Switch, AlertDialog, Sonner (Toast but different name)
+- Shadcn UI - components library that provides pre-built UI components code and let you customize it. In this project we use it for Button, Card, Form, Input, Textarea, Switch, AlertDialog, Sonner (Toast but different name), Select
 - Lucide React - Icon library for React
 - tw-animate-css - Collection of utilities classes for Tailwind CSS animations
 - react-hook-form - Custom React hook for form validation, form state management, and form submission
@@ -112,8 +114,9 @@ Your server will run on [http://localhost:3000](http://localhost:3000/)
 TODO
 JS
 
-- navigator.clipboard
-  .writeText(url)
+- navigator.clipboard.writeText("sometext")
+
+- Intl.supportedValuesOf()
 
 React
 
@@ -125,6 +128,14 @@ Next
 
 - revalidatePath
 
+zod
+
+- superRefine
+
+React Hook Form
+
+- useFieldArray
+
 ## <a name="note">Implementation Notes</a>
 
 TODO
@@ -134,3 +145,6 @@ TODO
   - NEXT_REDIRECT error when redirect in try cath
 
     - In Server Actions and Route Handlers, redirect should be called `outside` the try block when using try/catch statements. https://nextjs.org/docs/app/api-reference/functions/redirect#behavior
+
+- Incorrect regex in Time format HH:MM
+  `/^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/` make `9:15` pass which should not
