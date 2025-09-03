@@ -62,6 +62,7 @@ TODO
 - react-hook-form - Custom React hook for form validation, form state management, and form submission
 - zod - Schema-based validation and data parsing
 - @hookform/resolvers - Form validation resolver when using external validation library like `zod` in this project
+- react-loading-indicators - Collection of React components for displaying loading state
 
 ## <a name="features">Features</a>
 
