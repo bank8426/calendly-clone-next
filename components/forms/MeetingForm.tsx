@@ -36,6 +36,7 @@ import { Calendar } from "../ui/calendar";
 import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
 import Link from "next/link";
+import Booking from "../Booking";
 
 const MeetingForm = ({
   validTimes,
@@ -85,7 +86,7 @@ const MeetingForm = ({
     }
   };
 
-  // if (form.formState.isSubmitting) return <Booking />;
+  if (form.formState.isSubmitting) return <Booking />;
 
   return (
     <Form {...form}>

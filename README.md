@@ -122,6 +122,11 @@ Your server will run on [http://localhost:3000](http://localhost:3000/)
 ## <a name="learn">What I learned</a>
 
 TODO
+
+Node
+
+- `Object.groupBy` is available in Node v21
+
 JS
 
 - navigator.clipboard.writeText("sometext")
