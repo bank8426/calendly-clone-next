@@ -1,8 +1,8 @@
 "use server";
 
 import { clerkClient } from "@clerk/nextjs/server";
-import { endOfDay, startOfDay } from "date-fns";
-import { google } from "googleapis";
+import { addMinutes, endOfDay, startOfDay } from "date-fns";
+import { calendar_v3, google } from "googleapis";
 
 async function getOAuthClient(clerkUserId: string) {
   try {
@@ -75,5 +75,74 @@ export async function getCalendarEventTimes(
     );
   } catch (error: any) {
     throw new Error(`Failed to fetch calendar events : ${error.message}`);
+  }
+}
+
+export async function createCalendarEvent({
+  clerkUserId,
+  guestName,
+  guestEmail,
+  startTime,
+  guestNotes,
+  durationInMinutes,
+  eventName,
+}: {
+  clerkUserId: string;
+  guestName: string;
+  guestEmail: string;
+  startTime: Date;
+  guestNotes?: string | null;
+  durationInMinutes: number;
+  eventName: string;
+}): Promise<calendar_v3.Schema$Event> {
+  try {
+    const oAuthClient = await getOAuthClient(clerkUserId);
+    if (!oAuthClient) {
+      throw new Error("OAuth client could not be obtained.");
+    }
+
+    const client = await clerkClient();
+    const calendarUser = await client.users.getUser(clerkUserId);
+
+    const primaryEmail = calendarUser.emailAddresses.find(
+      ({ id }) => id === calendarUser.primaryEmailAddressId
+    );
+
+    if (!primaryEmail) {
+      throw new Error("Clerk user has no email");
+    }
+
+    const calendarEvent = await google.calendar("v3").events.insert({
+      calendarId: "primary",
+      auth: oAuthClient,
+      sendUpdates: "all",
+      requestBody: {
+        attendees: [
+          { email: guestEmail, displayName: guestName },
+          {
+            email: primaryEmail.emailAddress,
+            displayName: `${calendarUser.firstName} ${calendarUser.lastName}`,
+            responseStatus: "accepted",
+          },
+        ],
+        description: guestNotes
+          ? `Additional Details: ${guestNotes}`
+          : "No additional details.",
+        start: {
+          dateTime: startTime.toISOString(),
+        },
+        end: {
+          dateTime: addMinutes(startTime, durationInMinutes).toISOString(),
+        },
+        summary: `${guestName} + ${calendarUser.firstName} ${calendarUser.lastName}: ${eventName}`,
+      },
+    });
+
+    return calendarEvent.data;
+  } catch (error: any) {
+    console.error("Error creating calendar event: ", error.message || error);
+    throw new Error(
+      `Failed to create calendar event: ${error.message || error}`
+    );
   }
 }

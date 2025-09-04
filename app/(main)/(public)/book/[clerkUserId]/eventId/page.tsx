@@ -16,6 +16,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { clerkClient } from "@clerk/nextjs/server";
+import MeetingForm from "@/components/forms/MeetingForm";
 
 const BookingPage = async ({
   params,
@@ -64,11 +65,11 @@ const BookingPage = async ({
         )}
       </CardHeader>
       <CardContent>
-        {/* <MeetingForm
+        <MeetingForm
           validTimes={validTimes}
           eventId={event.id}
           clerkUserId={clerkUserId}
-        /> */}
+        />
       </CardContent>
     </Card>
   );

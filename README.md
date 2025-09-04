@@ -66,7 +66,7 @@ TODO
 - Lucide React - Icon library for React
 - tw-animate-css - Collection of utilities classes for Tailwind CSS animations
 - react-hook-form - Custom React hook for form validation, form state management, and form submission
-- zod - Schema-based validation and data parsing
+- Zod v4 - Schema-based validation and data parsing
 - @hookform/resolvers - Form validation resolver when using external validation library like `zod` in this project
 - react-loading-indicators - Collection of React components for displaying loading state
 - googleapis - client library for using Google APIs which include Google Calendar
@@ -158,3 +158,20 @@ TODO
 
 - Incorrect regex in Time format HH:MM
   `/^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/` make `9:15` pass which should not
+
+- Zod
+
+  ```js
+  z.string().email(); //deprecated
+  z.email(); //recommended
+  ```
+
+  ```js
+  // .merge() (deprecated)
+  z.object(schemaA).merge(schemaB);
+  // .extend(schemaB.shape) (recommended and don't forgot `.shape`)
+  z.object(schemaA).extend(schemaB.shape);
+  ```
+
+- Shadcn
+  - Calendar `autoFocus`❌ props deprecated use `autoFocus`✅ instead
