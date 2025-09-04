@@ -1,9 +1,10 @@
 "use server";
 
 import { clerkClient } from "@clerk/nextjs/server";
+import { endOfDay, startOfDay } from "date-fns";
 import { google } from "googleapis";
 
-async function getAuthClient(clerkUserId: string) {
+async function getOAuthClient(clerkUserId: string) {
   try {
     const client = await clerkClient();
 
@@ -26,4 +27,53 @@ async function getAuthClient(clerkUserId: string) {
 
     return oAuthClient;
   } catch (error) {}
+}
+
+export async function getCalendarEventTimes(
+  clerkUserId: string,
+  { start, end }: { start: Date; end: Date }
+): Promise<{ start: Date; end: Date }[]> {
+  try {
+    const oAuthClient = await getOAuthClient(clerkUserId);
+
+    if (!oAuthClient) {
+      throw new Error("Oauth client could not be obtaioned.");
+    }
+
+    const events = await google.calendar({ version: "v3" }).events.list({
+      calendarId: "primary",
+      eventTypes: ["default"],
+      singleEvents: true,
+      timeMin: start.toISOString(),
+      timeMax: end.toISOString(),
+      maxResults: 2500,
+      auth: oAuthClient,
+    });
+
+    return (
+      events.data.items
+        ?.map((event) => {
+          if (event.start?.date && event.end?.date) {
+            return {
+              start: startOfDay(new Date(event.start.date)),
+              end: endOfDay(new Date(event.end.date)),
+            };
+          }
+
+          if (event.start?.dateTime && event.end?.dateTime) {
+            return {
+              start: new Date(event.start.dateTime),
+              end: new Date(event.end.dateTime),
+            };
+          }
+
+          return undefined;
+        })
+        .filter(
+          (date): date is { start: Date; end: Date } => date !== undefined
+        ) || []
+    );
+  } catch (error: any) {
+    throw new Error(`Failed to fetch calendar events : ${error.message}`);
+  }
 }

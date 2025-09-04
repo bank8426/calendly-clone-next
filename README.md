@@ -56,6 +56,7 @@ TODO
 
 - Next.js - React framework for full-stack web application development
 - React - JavaScript library
+- Google Calendar API -
 - TypeScript - JavaScript superset for type safety
 - Tailwind CSS v4 - CSS framework
 - Clerk - Authentication middleware, pre-built UI components for user authentication and themes
@@ -68,6 +69,9 @@ TODO
 - zod - Schema-based validation and data parsing
 - @hookform/resolvers - Form validation resolver when using external validation library like `zod` in this project
 - react-loading-indicators - Collection of React components for displaying loading state
+- googleapis - client library for using Google APIs which include Google Calendar
+- date-fns - Utility functions library for `Date` in JavaScript
+- date-fns-tz - Time zone support functions for `date-fns`
 
 ## <a name="features">Features</a>
 
