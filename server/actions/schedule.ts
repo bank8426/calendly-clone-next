@@ -150,9 +150,13 @@ function getAvailabilities(
   date: Date,
   timezone: string
 ): { start: Date; end: Date }[] {
-  const dayOfWeek = format(date, "EEEE")?.toLowerCase();
+  const dayOfWeek = format(
+    date,
+    "EEEE"
+  )?.toLowerCase() as keyof typeof groupedAvailabilities;
 
-  if (!dayOfWeek || dayOfWeek) return [];
+  if (!dayOfWeek) return [];
+
   const dayAvailabilities = groupedAvailabilities[dayOfWeek];
 
   if (!dayAvailabilities) return [];

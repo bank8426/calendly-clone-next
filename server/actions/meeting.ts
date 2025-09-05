@@ -1,3 +1,5 @@
+"use server";
+
 import { db } from "@/drizzle/db";
 import { meetingActionSchema } from "@/schema/meeting";
 import { fromZonedTime } from "date-fns-tz";

@@ -36,12 +36,7 @@ const BookingPage = async ({
     );
 
   const client = await clerkClient();
-  console.log("client");
-  console.log(client);
-
   const calendarUser = await client.users.getUser(clerkUserId);
-  console.log("calendarUser");
-  console.log(calendarUser);
 
   const startDate = roundToNearestMinutes(new Date(), {
     nearestTo: 15,
