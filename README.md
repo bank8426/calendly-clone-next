@@ -62,6 +62,7 @@ TODO
 - Clerk - Authentication middleware, pre-built UI components for user authentication and themes
 - Neon - PostgresSQL database cloud service
 - Drizzle - ORM for SQL databases
+- Vercel - Cloud platform to deploy this project
 - Shadcn UI - components library that provides pre-built UI components code and let you customize it. In this project we use it for Button, Card, Form, Input, Textarea, Switch, AlertDialog, Sonner (Toast but different name), Select
 - Lucide React - Icon library for React
 - tw-animate-css - Collection of utilities classes for Tailwind CSS animations
