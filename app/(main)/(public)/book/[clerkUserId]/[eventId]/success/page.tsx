@@ -15,10 +15,10 @@ const SuccessPage = async ({
   searchParams,
 }: {
   params: Promise<{ clerkUserId: string; eventId: string }>;
-  searchParams: Promise<{ startTime: string }>;
+  searchParams: Promise<{ startTime: string; timezone: string }>;
 }) => {
   const { clerkUserId, eventId } = await params;
-  const { startTime } = await searchParams;
+  const { startTime, timezone } = await searchParams;
   const event = await getEvent(clerkUserId, eventId);
 
   if (!event)
@@ -40,7 +40,9 @@ const SuccessPage = async ({
           ✅Successfully Booked {event.name} with {calendarUser.fullName}
         </CardTitle>
 
-        <CardDescription>{formatDateTime(startTimeDate)}</CardDescription>
+        <CardDescription>
+          {formatDateTime(startTimeDate, timezone)}
+        </CardDescription>
       </CardHeader>
       <CardContent>
         You should receive an email confirmation shortly. You can safely close

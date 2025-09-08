@@ -2,7 +2,7 @@
 
 import { db } from "@/drizzle/db";
 import { meetingActionSchema } from "@/schema/meeting";
-import { fromZonedTime } from "date-fns-tz";
+import { fromZonedTime, toZonedTime } from "date-fns-tz";
 import z from "zod";
 import { getValidTimesFromSchedule } from "./schedule";
 import { createCalendarEvent } from "../google/googleCalendar";
@@ -30,11 +30,7 @@ export async function createMeeting(
       throw new Error("Event not found.");
     }
 
-    const startInTimezone = fromZonedTime(data.startTime, data.timezone);
-    const validTimes = await getValidTimesFromSchedule(
-      [startInTimezone],
-      event
-    );
+    const validTimes = await getValidTimesFromSchedule([data.startTime], event);
 
     if (validTimes.length === 0) {
       throw new Error("Selected time is not valid.");
@@ -42,7 +38,7 @@ export async function createMeeting(
 
     await createCalendarEvent({
       ...data,
-      startTime: startInTimezone,
+      startTime: data.startTime,
       durationInMinutes: event.durationInMinutes,
       eventName: event.name,
     });
@@ -51,6 +47,7 @@ export async function createMeeting(
       clerkUserId: data.clerkUserId,
       eventId: data.eventId,
       startTime: data.startTime,
+      timezone: data.timezone,
     };
   } catch (error: any) {
     console.error(`Error creating meeting: ${error.message || error}`);

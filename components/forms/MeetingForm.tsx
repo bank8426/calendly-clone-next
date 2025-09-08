@@ -77,7 +77,9 @@ const MeetingForm = ({
 
       const path = `/book/${meetingData.clerkUserId}/${
         meetingData.eventId
-      }/success?startTime=${meetingData.startTime.toISOString()}`;
+      }/success?startTime=${meetingData.startTime.toISOString()}&timezone=${
+        meetingData.timezone
+      }`;
 
       router.push(path);
     } catch (error: any) {

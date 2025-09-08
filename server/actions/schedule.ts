@@ -23,7 +23,7 @@ import {
   setHours,
   setMinutes,
 } from "date-fns";
-import { fromZonedTime } from "date-fns-tz";
+import { fromZonedTime, toZonedTime } from "date-fns-tz";
 
 type ScheduleRow = typeof ScheduleTable.$inferSelect;
 type AvailabilityRow = typeof ScheduleAvailabilityTable.$inferSelect;
@@ -150,8 +150,9 @@ function getAvailabilities(
   date: Date,
   timezone: string
 ): { start: Date; end: Date }[] {
+  const zonedDate = toZonedTime(date, timezone);
   const dayOfWeek = format(
-    date,
+    zonedDate,
     "EEEE"
   )?.toLowerCase() as keyof typeof groupedAvailabilities;
 
@@ -166,12 +167,12 @@ function getAvailabilities(
     const [endHour, endMinute] = endTime.split(":").map(Number);
 
     const start = fromZonedTime(
-      setMinutes(setHours(date, startHour), startMinute),
+      setMinutes(setHours(zonedDate, startHour), startMinute),
       timezone
     );
 
     const end = fromZonedTime(
-      setMinutes(setHours(date, endHour), endMinute),
+      setMinutes(setHours(zonedDate, endHour), endMinute),
       timezone
     );
 

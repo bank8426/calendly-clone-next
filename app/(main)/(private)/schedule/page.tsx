@@ -10,8 +10,6 @@ const SchedulePage = async () => {
 
   const schedule = await getSchedule(userId);
 
-  console.log(schedule);
-
   return (
     <Card className="max-w-md mx-auto border-8 border-blue-200 shadow-2xl shadow-accent-foreground">
       <CardHeader>
