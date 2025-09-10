@@ -505,8 +505,10 @@ function getAvailabilities(
     - Merge schema
 
     ```js
-    z.object(schemaA).merge(schemaB); // .merge() (❌deprecated)
-    z.object(schemaA).extend(schemaB.shape); // .extend(schemaB.shape) (✅recommended and don't forget `.shape`)
+    // .merge() (❌deprecated)
+    z.object(schemaA).merge(schemaB);
+    // .extend(schemaB.shape) (✅recommended and don't forget `.shape`)
+    z.object(schemaA).extend(schemaB.shape);
     ```
 
   - Shadcn
