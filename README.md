@@ -169,7 +169,7 @@ cd calendly-clone-next
 
 ### Installation
 
-Go inside the backend folder and install the project dependencies using npm:
+Install the project dependencies using npm:
 
 ```bash
 npm install
